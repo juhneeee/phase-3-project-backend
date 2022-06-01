@@ -21,8 +21,7 @@ class User < ActiveRecord::Base
             s = Stock.find(k)
             value = s.price * q
             amount_invested = totals[k]
-            {label: s.label, price: s.price, quantity: q, current_value: value, amount_invested: amount_invested, net_change: value+amount_invested
-            }
+            {label: s.label, price: s.price, quantity: q, current_value: value, amount_invested: amount_invested, net_change: value+amount_invested}
         end 
     end
     
