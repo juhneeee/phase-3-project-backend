@@ -8,9 +8,9 @@ class ApplicationController < Sinatra::Base
     { message: "Good luck with your project!" }.to_json
   end
 
-  get "/transactions" do
-    Transaction.all.to_json(methods: [:stock])
-  end
+  # get "/transactions" do
+  #   Transaction.all.to_json(methods: [:stock])
+  # end
   
   get "/stocks" do
     Stock.all.to_json
@@ -26,8 +26,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/users/:id/transactions" do
-    transactions = User.find(params[:id]).transactions
-    transactions.to_json
+    transactions = User.find(params[:id]).transactions.last(20)
+    transactions.to_json(methods: [:stock])
   end
 
   get "/trade/:user_id/:stock_id/:quantity" do
@@ -37,7 +37,14 @@ class ApplicationController < Sinatra::Base
     if params[:quantity].to_i < 0
       User.find(params[:user_id].to_i).sell(Stock.find(params[:stock_id].to_i), params[:quantity].to_i*-1)
     end
+  end
 
+  get "/update/prices" do
+    Stock.all.each {|s| s.change_price}
+  end
+
+  get "/fakes/gamble" do
+    User.all.where(account_type: "Fake").each {|f| f.gamble}
   end
 
 
