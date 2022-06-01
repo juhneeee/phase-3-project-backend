@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
 
     def sell(stock, quantity)
         Transaction.create(transaction_type: "sell", stock: stock, user: self, quantity: -quantity, price: stock.price, balance_change: stock.price*quantity)
-
         self.update(balance: balance + stock.price*quantity)
     end
 
