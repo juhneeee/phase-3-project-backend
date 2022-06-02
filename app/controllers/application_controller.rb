@@ -13,7 +13,7 @@ class ApplicationController < Sinatra::Base
   # end
   
   get "/stocks" do
-    Stock.all.to_json
+    Stock.all.to_json(methods: [:percent_change])
   end
 
   get "/users" do
