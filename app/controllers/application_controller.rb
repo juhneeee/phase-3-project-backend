@@ -3,15 +3,6 @@ require 'pry'
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
-  # Add your routes here
-  get "/" do
-    { message: "Good luck with your project!" }.to_json
-  end
-
-  # get "/transactions" do
-  #   Transaction.all.to_json(methods: [:stock])
-  # end
-  
   get "/stocks" do
     Stock.all.to_json(methods: [:percent_change])
   end
@@ -47,5 +38,9 @@ class ApplicationController < Sinatra::Base
     User.all.where(account_type: "Fake").each {|f| f.gamble}
   end
 
+  post "/users" do
+    user = User.create(params)
+    user.to_json
+  end
 
 end
