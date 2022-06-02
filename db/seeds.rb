@@ -17,5 +17,12 @@ User.create(name: "Patrick", account_type: "Fake", balance: 1001.00, passcode: 0
 User.create(name: "Max", account_type: "Fake", balance: 1000.00, passcode: 0)
 User.create(name: "Brody", account_type: "Fake", balance: 1000.00, passcode: 0)
 
+Stock.find_by(name: "Apple").update(label:"🍎APLE")
+Stock.find_by(name: "Banana").update( label:"🍌BAN")
+Stock.find_by(name: "Cherry").update( label:"🍒CIER")
+Stock.find_by(name: "Watermelon").update( label:"🍉H2O")
+Stock.find_by(name: "Pear").update( label:"🍐P")
+Stock.find_by(name: "Mango").update( label:"🥭HH")
+
 
 puts "✅ Done seeding!"
