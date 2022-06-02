@@ -26,7 +26,11 @@ class User < ActiveRecord::Base
     
     def portfolio_value
         hash = self.transactions.group(:stock_id).sum(:quantity)
-        hash.each.map{|id, q| Stock.find(id).price * q}.reduce(&:+).round(2)
+        if hash.empty?
+            return 0
+        else
+            hash.each.map{|id, q| Stock.find(id).price * q}.reduce(&:+).round(2)
+        end
     end
 
     def net_worth
