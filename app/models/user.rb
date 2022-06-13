@@ -4,12 +4,12 @@ class User < ActiveRecord::Base
     has_many :stocks, through: :transactions
     
     def buy(stock, quantity)
-        Transaction.create(transaction_type: "buy", stock: stock, user: self, quantity: quantity, price: stock.price, balance_change: stock.price*quantity* -1)
+        self.transaction.create(transaction_type: "buy", stock: stock, quantity: quantity, price: stock.price, balance_change: stock.price*quantity* -1)
         self.update(balance: balance - stock.price*quantity)
     end
 
     def sell(stock, quantity)
-        Transaction.create(transaction_type: "sell", stock: stock, user: self, quantity: -quantity, price: stock.price, balance_change: stock.price*quantity)
+        self.transaction.create(transaction_type: "sell", stock: stock, quantity: -quantity, price: stock.price, balance_change: stock.price*quantity)
         self.update(balance: balance + stock.price*quantity)
     end
 
@@ -80,15 +80,15 @@ class User < ActiveRecord::Base
         create_order(plan_to_buy , plan_to_sell)
     end
 
-    def buy_random(min=100, max=400)
-        plan_to_buy = random_stocks(min, max)
-        create_order(plan_to_buy)
-    end
+    # def buy_random(min=100, max=400)
+    #     plan_to_buy = random_stocks(min, max)
+    #     create_order(plan_to_buy)
+    # end
 
-    def sell_random(min=100, max=400)
-        plan_to_sell = random_stocks(min, max)
-        create_order([] , plan_to_sell)
-    end
+    # def sell_random(min=100, max=400)
+    #     plan_to_sell = random_stocks(min, max)
+    #     create_order([] , plan_to_sell)
+    # end
 
 
 end
