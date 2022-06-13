@@ -5,7 +5,7 @@ Stock.create(name: "Apple", label:"APLE", price: 150, description:"Invest in the
 Stock.create(name: "Banana", label:"BAN", price: 125, description:"The Stock That's Never Bruised!")
 Stock.create(name: "Cherry", label:"CIER", price: 55, description:"The best fruit.")
 Stock.create(name: "Watermelon", label:"H2O", price: 200, description:"Earth is just 75% watermelon.")
-Stock.create(name: "Pear", label:"P", price: 22, description:"The best fruit.")
+Stock.create(name: "Pear", label:"P", price: 22, description:"Green watery and not quite watermelon.")
 Stock.create(name: "Mango", label:"HH", price:300, previous:300, description: "Fresh from Hagay's Horticulture Lab.")
 
 User.create(name: "Abby", account_type: "Fake", balance: 1000.00, passcode: 0)
